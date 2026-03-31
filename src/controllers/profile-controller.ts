@@ -13,7 +13,7 @@ export const listProfilesController = asyncHandler(
 
 export const getProfileByIdController = asyncHandler(
   async (req: Request, res: Response) => {
-    const { id } = req.params
+    const id = req.params['id'] as string
     const profile = await getProfileById(id)
     if (!profile) throw new AppError('Not found', 404)
     return res.status(200).json({ success: true, data: profile })
@@ -22,7 +22,7 @@ export const getProfileByIdController = asyncHandler(
 
 export const getPatientDiaryEntriesController = asyncHandler(
   async (req: Request, res: Response) => {
-    const { id } = req.params
+    const id = req.params['id'] as string
     const entries = await getDiaryEntriesByUserId(id)
     const mapped = entries.map(mapDiaryEntry)
     return res.status(200).json({ success: true, data: mapped })
