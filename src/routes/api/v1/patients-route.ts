@@ -1,6 +1,15 @@
 import { Router } from "express"
-import { listProfilesController } from "@/controllers/profile-controller"
+import { requireAuth } from '../../../middlewares/auth-handler'
+import {
+  listProfilesController,
+  getProfileByIdController,
+  getPatientDiaryEntriesController,
+} from '@/controllers/profile-controller'
 
 const router = Router()
-router.get("/", listProfilesController)
+
+router.get("/", requireAuth, listProfilesController)
+router.get("/:id", requireAuth, getProfileByIdController)
+router.get("/:id/diary-entries", requireAuth, getPatientDiaryEntriesController)
+
 export default router
