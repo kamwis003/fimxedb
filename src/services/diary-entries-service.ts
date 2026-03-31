@@ -6,7 +6,7 @@ import type {
   IDiaryEntriesService,
 } from './interfaces/i-diary-entries-service'
 
-function mapDiaryEntry(entry: DiaryEntry): DiaryEntryResponse {
+export function mapDiaryEntry(entry: DiaryEntry): DiaryEntryResponse {
   return {
     id: entry.id,
     userId: entry.userId,
